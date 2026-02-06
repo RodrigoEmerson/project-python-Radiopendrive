@@ -4,14 +4,14 @@
 
 Organize seu pendrive assim:
 
-/RadioPendrive
- ├── musicas/ <br>
- ├── falas/ \n
- ├── vinhetas/ \n
- ├── noticias/ \n
- ├── piadas/ \n
- ├── atualizador.py \n
- └── config.json \n
+/RadioPendrive 
+ ├── musicas/ 
+ ├── falas/
+ ├── vinhetas/
+ ├── noticias/
+ ├── piadas/
+ ├── atualizador.py
+ └── config.json 
 
 
 ⚙️ 2. Lógica do Atualizador
@@ -44,4 +44,5 @@ Se quiser que o script rode automaticamente ao conectar o pendrive:
 
 
 No Windows, crie um arquivo autorun.inf.
+
 

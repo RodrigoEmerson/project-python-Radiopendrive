@@ -5,7 +5,7 @@
 Organize seu pendrive assim:
 
 /RadioPendrive
- ├── musicas/ \n
+ ├── musicas/ <br>
  ├── falas/ \n
  ├── vinhetas/ \n
  ├── noticias/ \n
@@ -44,3 +44,4 @@ Se quiser que o script rode automaticamente ao conectar o pendrive:
 
 
 No Windows, crie um arquivo autorun.inf.
+

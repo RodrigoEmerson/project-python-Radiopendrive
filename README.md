@@ -6,7 +6,7 @@
 
 Organize seu pendrive assim:
 
-/RadioPendrive 
+/RadioPendrive <br>
  ├── musicas/ <br>
  ├── falas/ <br>
  ├── vinhetas/ <br>
@@ -44,6 +44,7 @@ Ele usa a biblioteca gitpython para sincronizar com o GitHub.
 
 Se quiser que o script rode automaticamente ao conectar o pendrive:
 No Windows, crie um arquivo autorun.inf.
+
 
 
 

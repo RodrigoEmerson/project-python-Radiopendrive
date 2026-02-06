@@ -1,6 +1,8 @@
 import os
 import json
-import git
+import requests
+import zipfile
+import io
 import shutil
 
 # Carregar configurações
@@ -13,18 +15,26 @@ local_repo = "repo_temp"
 
 print("🔄 Iniciando atualização da Rádio Pendrive...")
 
-# Se o repositório temporário existir, atualiza. Caso contrário, clona.
-if os.path.exists(local_repo):
-    print("➡️ Atualizando repositório existente...")
-    repo = git.Repo(local_repo)
-    repo.remotes.origin.pull()
-else:
-    print("📥 Clonando repositório...")
-    git.Repo.clone_from(repo_url, local_repo)
+# Montar URL do .zip (GitHub entrega assim)
+zip_url = repo_url.replace("github.com", "codeload.github.com") + "/zip/refs/heads/main"
+
+# Baixar arquivo ZIP
+print("📥 Baixando arquivos do GitHub...")
+response = requests.get(zip_url)
+if response.status_code != 200:
+    print("❌ Erro ao baixar repositório:", response.status_code)
+    exit()
+
+# Extrair ZIP em memória
+with zipfile.ZipFile(io.BytesIO(response.content)) as zip_ref:
+    zip_ref.extractall(local_repo)
+
+# O GitHub cria uma pasta com nome "project-python-Radiopendrive-main"
+repo_folder = os.path.join(local_repo, "project-python-Radiopendrive-main")
 
 # Sincronizar as pastas configuradas
 for folder in folders:
-    source_path = os.path.join(local_repo, folder)
+    source_path = os.path.join(repo_folder, folder)
     target_path = os.path.join(folder)
 
     if not os.path.exists(source_path):
@@ -43,4 +53,6 @@ for folder in folders:
         else:
             print(f"✅ Já atualizado: {file}")
 
+# Limpar repositório temporário
+shutil.rmtree(local_repo)
 print("🎧 Atualização concluída com sucesso!")

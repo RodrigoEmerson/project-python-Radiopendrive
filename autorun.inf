@@ -1,0 +1,4 @@
+[autorun]
+open=python atualizador.py
+action=Atualizar Rádio Pendrive
+icon=radio.ico
